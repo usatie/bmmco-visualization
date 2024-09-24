@@ -91,6 +91,13 @@ def add_cache_block(matrix_name, bi, bj):
     if len(l2_cache) > l2_cache_size:
         l2_cache.pop()
 
+# Create legend elements
+legend_elements = [
+    patches.Patch(facecolor='red', edgecolor='none', label='Blocks currently used for computation'),
+    patches.Patch(facecolor='green', edgecolor='green', linestyle='--', label='L1 cache'),
+    patches.Patch(facecolor='blue', edgecolor='blue', linestyle='--', label='L2 cache')
+]
+
 # Main loop to simulate blocked matrix multiplication
 frames = []
 for i in range(Nb):
@@ -131,7 +138,10 @@ for i in range(Nb):
                 f"L2 Cache Capacity: {l2_cache_size} blocks\n"
             )
             # Position the text box
-            plt.figtext(0.75, 0.05, text_str, ha='center', fontsize=12, bbox={"facecolor":"orange", "alpha":0.5, "pad":5})
+            plt.figtext(0.75, 0.25, text_str, ha='center', fontsize=12, bbox={"facecolor":"orange", "alpha":1.0, "pad":5})
+
+            # Add legend to the figure
+            fig.legend(handles=legend_elements, loc='lower right')
 
             plt.tight_layout(rect=[0, 0.1, 1, 0.95])  # Adjust layout to make room for the text
             #plt.pause(tpf)
